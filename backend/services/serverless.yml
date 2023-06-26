@@ -8,13 +8,13 @@ provider:
   environment:
     NODE_ENV: ${opt:stage, 'dev'}
   iam:
-    role: arn:aws:iam::302213478610:role/lambda-role
+    role: arn:aws:iam::896800544353:user/lambdaexec
   vpc:
     subnetIds:
-      - subnet-0f01c3493bfdaabd7
-      - subnet-029725efdcd399b88
+      - subnet-026f232aa0f5f249a
+      - subnet-00aa7c2035bfe1f95
     securityGroupIds:
-      - sg-029b80f0fd44eb16a
+      - sg-05b5a585f30600ab5
 
 package:
   patterns:
@@ -85,7 +85,7 @@ functions:
     handler: src/ledger-replicator/handler.handler
     events:
       - stream:
-          arn: arn:aws:kinesis:us-east-1:302213478610:stream/carbon-stream-${self:provider.stage}
+          arn: arn:aws:kinesis:us-east-1:896800544353:stream/carbon-registry-${self:provider.stage}
           batchSize: 2
           startingPosition: LATEST
           maximumRetryAttempts: 10
@@ -124,7 +124,7 @@ functions:
     handler: src/async-operations-handler/handler.handler
     events:
       - sqs:
-          arn: arn:aws:sqs:us-east-1:302213478610:AsyncQueue${self:provider.stage}.fifo
+          arn: arn:aws:sqs:us-east-1:896800544353:AsyncQueue${self:provider.stage}.fifo
           batchSize: 10
     ssmToEnvironment:
       - SMTP_PASSWORD
