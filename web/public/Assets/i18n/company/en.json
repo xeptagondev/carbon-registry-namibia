@@ -1,6 +1,7 @@
 {
   "developer": "Developer",
   "name": "ORGANISATION NAME",
+  "filterByOrgType": "Filter by Organisation Type",
   "taxId": "VAT Registration #",
   "companyRole": "ORGANISATION TYPE",
   "viewCompanies": "View Organisations",
